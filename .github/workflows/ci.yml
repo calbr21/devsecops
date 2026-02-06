@@ -34,8 +34,13 @@ jobs:
       with:
         name: bandit-report
         path: bandit-report.json
+
+    - name: upload gitleaks report
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
         name: gitleaks-report
-        path: gitleaks-reprot.json
+        path: gitleaks-report.json
 
     - name: Scan dependencies
       run: pip-audit
