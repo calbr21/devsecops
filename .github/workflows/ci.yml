@@ -21,7 +21,7 @@ jobs:
         sudo apt-get install -y gitleaks
 
     - name: Scan for secrets
-      run: gitleaks scan .
+      run: gitleaks detect --source=.
 
     - name: Scan Python security
       run: bandit -r .
