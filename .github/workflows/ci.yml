@@ -29,13 +29,14 @@ jobs:
     - name: Scan Python security
       run: bandit -r . -f json -o bandit-report.json
 
+    - name: Upload Bandit Report
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: bandit-report
+        path: bandit-report.json
+
     - name: Scan dependencies
       run: pip-audit
 
-    - name: Upload security reports
-      uses: actions/upload-artifact@v4
-      with:
-        name: security-reports
-        path: |
-          bandit-report.json
-          gitleaks-report.json
+
