@@ -1,10 +1,8 @@
-from flask import Flask
+# app.py
+API_KEY = "my-super-secret-key"
 
-app = Flask(__name__)
+def greet(name):
+    print("Hello " + name)
 
-@app.route("/")
-def home():
-    return "Hello DevSecOps from Linux!"
+greet(input("Your name: "))
 
-if __name__ == "__main__":
-    app.run()
