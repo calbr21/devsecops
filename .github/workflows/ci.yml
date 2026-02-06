@@ -27,7 +27,7 @@ jobs:
       run: pip install bandit
 
     - name: Scan Python security
-      run: bandit -r .
+      run: bandit -r . -f json -o bandit-report.json
 
     - name: Scan dependencies
       run: pip-audit
