@@ -23,6 +23,9 @@ jobs:
     - name: Scan for secrets
       run: gitleaks detect --source=.
 
+    - name: Install Bandit
+      run: pip install bandit
+
     - name: Scan Python security
       run: bandit -r .
 
