@@ -21,13 +21,12 @@ jobs:
         sudo apt-get install -y gitleaks
 
     - name: Scan for secrets
-      run: gitleaks detect --source=.
-
+      run: gitleaks detect --source=. --report-format=json --report-path=gitleaks-report.json --exit-code=1 --redact
     - name: Install Bandit
       run: pip install bandit
 
     - name: Scan Python security
-      run: bandit -r . -f json -o bandit-report.json
+      run: bandit -r . -q . -f json -o bandit-report.json
 
     - name: Upload Bandit Report
       if: always()
@@ -35,6 +34,8 @@ jobs:
       with:
         name: bandit-report
         path: bandit-report.json
+        name: gitleaks-report
+        path: gitleaks-reprot.json
 
     - name: Scan dependencies
       run: pip-audit
