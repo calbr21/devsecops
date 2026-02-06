@@ -32,3 +32,10 @@ jobs:
     - name: Scan dependencies
       run: pip-audit
 
+    - name: Upload security reports
+      uses: actions/upload-artifact@v3
+      with:
+        name: security-reports
+        path: |
+          bandit-report.json
+          gitleaks-report.json
