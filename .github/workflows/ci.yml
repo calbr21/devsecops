@@ -36,7 +36,7 @@ jobs:
       run: gitleaks detect --source=. --exit-code=1 --redact --report-format=json --report-path=gitleaks-report.json
 
     - name: Pip-audit dependency scan
-      run: pip-audit -f table > pip-audit-report.txt
+      run: pip-audit -f cyclonedx-json -o pip-audit-report.json
 
     - name: Upload security reports
       if: always()
