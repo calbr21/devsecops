@@ -11,38 +11,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # 1️⃣ Checkout your repo
     - name: Checkout code
       uses: actions/checkout@v4
 
-    # 2️⃣ Set up Python
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
         python-version: '3.10'
 
-    # 3️⃣ Install Python tools
     - name: Install security tools
       run: |
         pip install bandit pip-audit
 
-    # 4️⃣ Install Gitleaks
     - name: Install gitleaks
       run: sudo apt-get update && sudo apt-get install -y gitleaks
 
-    # 5️⃣ Run Bandit (errors only)
     - name: Bandit security scan
       run: bandit -r . -q -f json -o bandit-report.json --severity-level medium -x venv,env,.venv
 
-    # 6️⃣ Run Gitleaks (errors only)
     - name: Gitleaks secret scan
       run: gitleaks detect --source=. --exit-code=1 --redact --report-format=json --report-path=gitleaks-report.json
 
-    # 7️⃣ Run pip-audit (dependency check)
     - name: Pip-audit dependency scan
       run: pip-audit -f json -o pip-audit-report.json
 
-    # 8️⃣ Upload all reports as artifacts
     - name: Upload security reports
       if: always()
       uses: actions/upload-artifact@v4
