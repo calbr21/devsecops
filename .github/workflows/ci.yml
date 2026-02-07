@@ -32,7 +32,7 @@ jobs:
 
     # 5️⃣ Run Bandit (errors only)
     - name: Bandit security scan
-      run: bandit -r . -q -f json -o bandit-report.json -x venv,.git --servirity-level medium
+      run: bandit -r . -q -f json -o bandit-report.json -x venv,.git --severity-level medium
 
     # 6️⃣ Run Gitleaks (errors only)
     - name: Gitleaks secret scan
