@@ -40,7 +40,7 @@ jobs:
 
     # 7️⃣ Run pip-audit (dependency check)
     - name: Pip-audit dependency scan
-      run: pip-audit --json > pip-audit-report.json
+      run: pip-audit -f json -o pip-audit-report.json
 
     # 8️⃣ Upload all reports as artifacts
     - name: Upload security reports
